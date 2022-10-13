@@ -15,6 +15,8 @@
 		72ED904D1F86D97B00AF41F7 /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED90481F86D97B00AF41F7 /* JDStatusBarStyle.m */; };
 		7E97311428F7E98E004C7A5E /* NotificationWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E97311228F7E98E004C7A5E /* NotificationWindow.h */; };
 		7E97311528F7E98E004C7A5E /* NotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97311328F7E98E004C7A5E /* NotificationWindow.m */; };
+		7E97311C28F81C6B004C7A5E /* JDStatusBarLayoutMarginHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E97311A28F81C6B004C7A5E /* JDStatusBarLayoutMarginHelper.h */; };
+		7E97311D28F81C6B004C7A5E /* JDStatusBarLayoutMarginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97311B28F81C6B004C7A5E /* JDStatusBarLayoutMarginHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		72ED904E1F86D98500AF41F7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Miscellaneous/Info.plist; sourceTree = SOURCE_ROOT; };
 		7E97311228F7E98E004C7A5E /* NotificationWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationWindow.h; sourceTree = "<group>"; };
 		7E97311328F7E98E004C7A5E /* NotificationWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationWindow.m; sourceTree = "<group>"; };
+		7E97311A28F81C6B004C7A5E /* JDStatusBarLayoutMarginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarLayoutMarginHelper.h; sourceTree = "<group>"; };
+		7E97311B28F81C6B004C7A5E /* JDStatusBarLayoutMarginHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarLayoutMarginHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 				72ED903C1F86D92A00AF41F7 /* JDStatusBarNotification.h */,
 				7E97311228F7E98E004C7A5E /* NotificationWindow.h */,
 				7E97311328F7E98E004C7A5E /* NotificationWindow.m */,
+				7E97311A28F81C6B004C7A5E /* JDStatusBarLayoutMarginHelper.h */,
+				7E97311B28F81C6B004C7A5E /* JDStatusBarLayoutMarginHelper.m */,
 				72ED90441F86D97B00AF41F7 /* JDStatusBarNotification.m */,
 				72ED90461F86D97B00AF41F7 /* JDStatusBarStyle.h */,
 				72ED90481F86D97B00AF41F7 /* JDStatusBarStyle.m */,
@@ -83,6 +89,7 @@
 				72ED903E1F86D92A00AF41F7 /* JDStatusBarNotification.h in Headers */,
 				7E97311428F7E98E004C7A5E /* NotificationWindow.h in Headers */,
 				72ED904A1F86D97B00AF41F7 /* JDStatusBarView.h in Headers */,
+				7E97311C28F81C6B004C7A5E /* JDStatusBarLayoutMarginHelper.h in Headers */,
 				72ED904B1F86D97B00AF41F7 /* JDStatusBarStyle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,6 +164,7 @@
 				72ED904D1F86D97B00AF41F7 /* JDStatusBarStyle.m in Sources */,
 				72ED904C1F86D97B00AF41F7 /* JDStatusBarView.m in Sources */,
 				7E97311528F7E98E004C7A5E /* NotificationWindow.m in Sources */,
+				7E97311D28F81C6B004C7A5E /* JDStatusBarLayoutMarginHelper.m in Sources */,
 				72ED90491F86D97B00AF41F7 /* JDStatusBarNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,7 +209,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -258,7 +266,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

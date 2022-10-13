@@ -166,7 +166,7 @@
 
 - (void)setupDefaultStyles;
 {
-  self.defaultStyle = [JDStatusBarStyle defaultStyleWithName:JDStatusBarStyleDefault];
+  self.defaultStyle = [JDStatusBarStyle defaultStyleWithName:JDStatusBarStyleErrorMini];
 
   self.userStyles = [NSMutableDictionary dictionary];
   for (NSString *styleName in [JDStatusBarStyle allDefaultStyleIdentifier]) {
@@ -218,9 +218,6 @@
 - (UIView*)showWithStatus:(NSString *)status
                     style:(JDStatusBarStyle*)style;
 {
-  // first, check if status bar is visible at all
-  if ([UIApplication sharedApplication].statusBarHidden) return nil;
-
   // prepare for new style
   if (style != self.activeStyle) {
     self.activeStyle = style;
@@ -610,7 +607,10 @@
   }
 
   - (BOOL)prefersStatusBarHidden {
-    return @available(iOS 13, *) && JDStatusBarRootVCLayoutMargin().top == 0;
+      if (@available(iOS 13, *)) {
+          return JDStatusBarRootVCLayoutMargin().top == 0;
+      }
+      return false;
   }
 
   - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
