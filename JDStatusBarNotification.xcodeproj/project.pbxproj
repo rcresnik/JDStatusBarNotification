@@ -13,6 +13,8 @@
 		72ED904B1F86D97B00AF41F7 /* JDStatusBarStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 72ED90461F86D97B00AF41F7 /* JDStatusBarStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72ED904C1F86D97B00AF41F7 /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED90471F86D97B00AF41F7 /* JDStatusBarView.m */; };
 		72ED904D1F86D97B00AF41F7 /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED90481F86D97B00AF41F7 /* JDStatusBarStyle.m */; };
+		7E97311428F7E98E004C7A5E /* NotificationWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E97311228F7E98E004C7A5E /* NotificationWindow.h */; };
+		7E97311528F7E98E004C7A5E /* NotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97311328F7E98E004C7A5E /* NotificationWindow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		72ED90471F86D97B00AF41F7 /* JDStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarView.m; sourceTree = "<group>"; };
 		72ED90481F86D97B00AF41F7 /* JDStatusBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarStyle.m; sourceTree = "<group>"; };
 		72ED904E1F86D98500AF41F7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Miscellaneous/Info.plist; sourceTree = SOURCE_ROOT; };
+		7E97311228F7E98E004C7A5E /* NotificationWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationWindow.h; sourceTree = "<group>"; };
+		7E97311328F7E98E004C7A5E /* NotificationWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			children = (
 				72ED904E1F86D98500AF41F7 /* Info.plist */,
 				72ED903C1F86D92A00AF41F7 /* JDStatusBarNotification.h */,
+				7E97311228F7E98E004C7A5E /* NotificationWindow.h */,
+				7E97311328F7E98E004C7A5E /* NotificationWindow.m */,
 				72ED90441F86D97B00AF41F7 /* JDStatusBarNotification.m */,
 				72ED90461F86D97B00AF41F7 /* JDStatusBarStyle.h */,
 				72ED90481F86D97B00AF41F7 /* JDStatusBarStyle.m */,
@@ -75,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72ED903E1F86D92A00AF41F7 /* JDStatusBarNotification.h in Headers */,
+				7E97311428F7E98E004C7A5E /* NotificationWindow.h in Headers */,
 				72ED904A1F86D97B00AF41F7 /* JDStatusBarView.h in Headers */,
 				72ED904B1F86D97B00AF41F7 /* JDStatusBarStyle.h in Headers */,
 			);
@@ -149,6 +156,7 @@
 			files = (
 				72ED904D1F86D97B00AF41F7 /* JDStatusBarStyle.m in Sources */,
 				72ED904C1F86D97B00AF41F7 /* JDStatusBarView.m in Sources */,
+				7E97311528F7E98E004C7A5E /* NotificationWindow.m in Sources */,
 				72ED90491F86D97B00AF41F7 /* JDStatusBarNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

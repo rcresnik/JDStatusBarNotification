@@ -11,6 +11,7 @@
 
 #import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarNotification.h"
+#import "NotificationWindow.h"
 
 @interface JDStatusBarStyle (Hidden)
 + (NSArray*)allDefaultStyleIdentifier;
@@ -25,7 +26,7 @@
 @end
 
 @interface JDStatusBarNotification () <CAAnimationDelegate>
-@property (nonatomic, strong, readonly) UIWindow *overlayWindow;
+@property (nonatomic, strong, readonly) NotificationWindow *overlayWindow;
 @property (nonatomic, strong, readonly) UIView *progressView;
 @property (nonatomic, strong, readonly) JDStatusBarView *topBar;
 
@@ -35,6 +36,7 @@
 @property (nonatomic, weak) JDStatusBarStyle *activeStyle;
 @property (nonatomic, strong) JDStatusBarStyle *defaultStyle;
 @property (nonatomic, strong) NSMutableDictionary *userStyles;
+@property (nonatomic, copy) void (^tapCallback)(void);
 @end
 
 @implementation JDStatusBarNotification
@@ -65,6 +67,14 @@
 {
   return [[self sharedInstance] showWithStatus:status
                                      styleName:styleName];
+}
+
++ (UIView*)showWithStatus:(NSString *)status
+                styleName:(NSString *)styleName
+              tapCallback:(void (^)(void))tapCallback {
+    return [[self sharedInstance] showWithStatus:status
+                                       styleName:styleName
+                                     tapCallback:tapCallback];
 }
 
 + (UIView*)showWithStatus:(NSString *)status
@@ -190,6 +200,22 @@
 }
 
 - (UIView*)showWithStatus:(NSString *)status
+                styleName:(NSString *)styleName
+              tapCallback:(void (^)(void))tapCallback {
+    self.tapCallback = tapCallback;
+    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                      action:@selector(handleSingleTap:)];
+    [[self topBar] addGestureRecognizer:singleFingerTap];
+    return [self showWithStatus:status styleName:styleName];
+}
+
+//The event handling method
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+    self.tapCallback();
+}
+
+- (UIView*)showWithStatus:(NSString *)status
                     style:(JDStatusBarStyle*)style;
 {
   // first, check if status bar is visible at all
@@ -269,10 +295,6 @@
   [self.dismissTimer invalidate];
   self.dismissTimer = nil;
 
-  // check animation type
-  BOOL animationsEnabled = (self.activeStyle.animationType != JDStatusBarAnimationTypeNone);
-  animated &= animationsEnabled;
-
   dispatch_block_t animation = ^{
     if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
       self.topBar.alpha = 0.0;
@@ -281,14 +303,14 @@
     }
   };
 
-  void(^complete)(BOOL) = ^(BOOL finished) {
-    [self.overlayWindow removeFromSuperview];
-    [self.overlayWindow setHidden:YES];
-    _overlayWindow.rootViewController = nil;
-    _overlayWindow = nil;
-    _progressView = nil;
-    _topBar = nil;
-  };
+    void(^complete)(BOOL) = ^(BOOL finished) {
+      [self.overlayWindow removeFromSuperview];
+      [self.overlayWindow setHidden:YES];
+      _overlayWindow.rootViewController = nil;
+      _overlayWindow = nil;
+      _progressView = nil;
+      _topBar = nil;
+    };
 
   if (animated) {
     // animate out
@@ -427,13 +449,13 @@
 
 #pragma mark Lazy views
 
-- (UIWindow *)overlayWindow;
+- (NotificationWindow *)overlayWindow;
 {
   if(_overlayWindow == nil) {
-    _overlayWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _overlayWindow = [[NotificationWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _overlayWindow.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _overlayWindow.backgroundColor = [UIColor clearColor];
-    _overlayWindow.userInteractionEnabled = NO;
+    _overlayWindow.userInteractionEnabled = YES;
     _overlayWindow.windowLevel = UIWindowLevelStatusBar;
     _overlayWindow.rootViewController = [[JDStatusBarNotificationViewController alloc] init];
     _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
@@ -588,7 +610,7 @@
   }
 
   - (BOOL)prefersStatusBarHidden {
-    return NO;
+    return @available(iOS 13, *) && JDStatusBarRootVCLayoutMargin().top == 0;
   }
 
   - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {

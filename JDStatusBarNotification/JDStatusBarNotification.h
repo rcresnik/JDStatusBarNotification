@@ -85,6 +85,10 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
                       dismissAfter:(NSTimeInterval)timeInterval
                          styleName:(NSString*)styleName;
 
++ (JDStatusBarView*)showWithStatus:(NSString *)status
+                         styleName:(NSString *)styleName
+                       tapCallback:(void (^)(void))tapCallback;
+
 #pragma mark Dismissal
 
 /**
